@@ -27,10 +27,10 @@ class MongoDBConfig(Config):
         self.__mongoDB_username = os.getenv("MONGODB_USER")
         self.__mongoDB_pwd = os.getenv("MONGODB_PASSWORD")
         self.__mongoDB_port = os.getenv("MONGODB_PORT")
-        self.__mongoDB_ip_address = os.getenv("MONGODB_HOST")
+        self.__mongoDB_host = os.getenv("MONGODB_HOST")
 
     def get_credentials(self) -> Tuple:
         """ This function returns the credentials to be used in connection.py
         """
         return (self.__mongoDB_username, self.__mongoDB_pwd,
-                self.__mongoDB_port, self.__mongoDB_ip_address)
+                self.__mongoDB_port, self.__mongoDB_host)

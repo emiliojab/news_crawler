@@ -8,6 +8,7 @@ This project uses the Scrapy framework to scrape bbc news' website.
 * __Spiders__:
 There is one spider in news_crawler/spiders/articles.py</br>
 The spider initiates a request to the internet (bbc.com) in our case, and after the 1)request and 2)response have been proccessed by middlewares, the spider 3)processes the response and sends the 4)result to the pipelines.</br>
+If we wante to add another website to parse, we can add another spider.
 * __Middlewares__: There are two middlewares in news_crawler/middlewares.py </br>
 One for processing the request and response to make sure the request URL has never been processed before, and the response's status is 200.</br>
 Another to generate random user-agents and change upon each request in order not to get banned</br>
@@ -16,7 +17,6 @@ This pipeline gets the result from the spider and stores them in MongoDB databas
 </br></br>
 
 ## Technical Implementation
-----
 * __loggings__: Used Scrapy's logging instances to add more loggings. All logs are inside logs/ directory.
 * __unit testing__: A test.py file to test the results before storing in MongoDB.</br>To run the test:
 ```
@@ -40,7 +40,6 @@ def scrape():
 </br>
 
 ## Three ways to run the project
-----
 Clone the repository, go the working directory. Make sure to rename .env.example to .env and to assign credentials to the variables accordingly.
 ### 1) Using Docker
 Create a docker network
@@ -91,5 +90,3 @@ $ scrapyrt -S news_crawler.settings
 then use the following endpoint:
 
 http://localhost:9080/crawl.json?spider_name=news_crawler&start_requests=true
-
-----

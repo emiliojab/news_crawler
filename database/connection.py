@@ -43,7 +43,5 @@ class MongoDB(Connect):
                 self.mongoDB_host = value
         mongo_uri = f'mongodb://{self.mongoDB_username}:{self.mongoDB_pwd }@' \
                     + f'{self.mongoDB_host}:{self.mongoDB_port}/' \
-                    + f'?authSource=admin&readPreference=primary&' \
-                    + f'appname=MongoDB%20Compass&directConnection=true&' \
-                    + f'ssl=false'
+                    + f'compose?authSource=admin&ssl=true'
         return MongoClient(mongo_uri)

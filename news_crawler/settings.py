@@ -15,7 +15,7 @@ password = os.getenv("MONGODB_PASSWORD")
 pwd = urllib.parse.quote_plus(password)
 host = os.getenv("MONGODB_HOST")
 port = os.getenv("MONGODB_PORT")
-MONGO_URI = f'mongodb://{user}:{pwd}@{host}:{port}/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false'
+MONGO_URI = f'mongodb://{user}:{pwd}@{host}:{port}/compose?authSource=admin&ssl=true'
 MONGO_DATABASE = os.getenv("MONGODB_DATABASE")
 
 # Logger custom settings
