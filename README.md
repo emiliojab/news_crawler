@@ -23,6 +23,9 @@ This pipeline gets the result from the spider and stores them in MongoDB databas
 python3 test.py
 ```
 * __style__: PEP 8 style.
+* __database__: MongoDB</br>
+Each record is save as such:
+![MongoDB record](imgs/mongodb_obj.png)
 * __server__: Flask, served with Gunicorn in a dockerized environment, and ScrapyRT which provides API for making requests with spiders, since scrapy cannot be used with Flask. Thus when the two servers and running, Flask calls the ScrapyRT endpoint which triggers the crawl function.</br>
 Which turned out to be the best solution since ScrapyRT by itself does not use any authentication algorithm.
 ``` python

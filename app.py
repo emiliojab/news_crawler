@@ -119,6 +119,26 @@ def scrape():
                          {'message': "Success"})
 
 
+@app.route('/api/get-all')
+@jwt_required()
+def get_all():
+
+    client = _conf.connect_to_DB()
+    db = client.BBC
+    collection = db.articles
+    document_cursor = collection.find()
+    result = list(document_cursor)
+    client.close()
+    if result:
+        return make_response(json_util.dumps({'data': result},
+                                             indent=4,
+                                             ensure_ascii=False),
+                             200, {'message': 'Success'})
+    else:
+        return make_response('Result not found', 404,
+                             {'message': 'Collection is empy'})
+
+
 @app.route('/api/filter-by-date')
 @jwt_required()
 def filter_by_date():
