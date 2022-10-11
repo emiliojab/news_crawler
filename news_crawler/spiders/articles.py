@@ -104,13 +104,13 @@ def process_response(response) -> list:
 
 
 class ArticleSpider(scrapy.Spider):
-    # the name of the crawler
+    # the name of the spider
     name = 'news_crawler'
 
     # allowed_domains should prevent any other domain of being processed
     # but for some reasons it is not, and I did not find any
     # solution YET other than it is a bug
-    allowed_domains = ['https://www.bbc.com']
+    allowed_domains = ['bbc.com']
 
     def start_requests(self) -> scrapy.Request:
         """ Gets the urls from the text file, puts them

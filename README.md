@@ -81,7 +81,7 @@ $ scrapy crawl news_crawler
 where news_crawler is the name of the spider specified in news_crawler/articles.py
 ```python
 class ArticleSpider(scrapy.Spider):
-    # the name of the crawler
+    # the name of the spider
     name = 'news_crawler'
     ...
 ```
