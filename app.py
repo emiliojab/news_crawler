@@ -224,7 +224,7 @@ def search_by_tags():
 @jwt_required()
 def search_by_keywords():
     args = request.args
-    keywords = args.get("tags")
+    keywords = args.get("keywords")
     keywords_list = keywords.split(',') if keywords else []
     if not keywords_list:
         return make_response(
