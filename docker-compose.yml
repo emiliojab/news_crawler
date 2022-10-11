@@ -1,0 +1,47 @@
+# this composer creates to containers
+# one for gunicorng to serve Flask and run the app
+# another for nginx to handle incoming requests to gunicorn
+version: '3.8'
+
+services:
+  web:
+    # uses the Dockerfile
+    build:
+        context: .
+        dockerfile: ./Dockerfile
+    container_name: crawler-web
+    # specify a volume to save the log files
+    volumes:
+      - logs:/home/app/news_crawler/logs
+    # only expose the port 5000 
+    expose:
+      - 5000
+    env_file:
+      - ./.env
+
+  nginx:
+    # uses the nginx Dockerfile and conf file nginx/nginx.conf
+    build: ./nginx
+    container_name: crawler-nginx
+    # specify a volume to save the log files
+    volumes:
+      - logs:/home/app/news_crawler/logs
+    # bind 1337 (incoming requests), to 81 nginx's port 
+    # specified in the conf file
+    ports:
+      - 1337:81
+    # this container runs after the web container
+    depends_on:
+      - web
+
+# naming the volume
+volumes:
+  logs:
+
+# specifying the name of the network where the two containers
+# are to be included
+networks:
+  default:
+    name: crawler-net
+    # since the network is created before running this composer
+    external: true 
